@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<ruleset name="个人规则"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
+                     http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="
+                     http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>
+        测试规则
+    </description>
+
+    <!-- 规则：未使用代码规则 -->
+    <!-- # UnusedPrivateField 未使用的私有属性-->
+    <!-- # UnusedLocalVariable 未使用的局部变量-->
+    <!-- # UnusedPrivateMethod 未使用的私有方法-->
+    <!-- # UnusedFormalParameter 未使用的形参-->
+    <rule ref="rulesets/unusedcode.xml" />
+
+    <!-- 规则：有争议的规则-->
+    <!-- Superglobals 不允许直接访问超全局变量 -->
+    <!-- CamelCaseClassName 类名大驼峰-->
+    <!-- CamelCasePropertyName 属性名驼峰-->
+    <!-- CamelCaseMethodName 方法名驼峰-->
+    <!-- CamelCaseParameterName 参数名驼峰-->
+    <!-- CamelCaseVariableName 变量名驼峰-->
+    <rule ref="rulesets/controversial.xml">
+        <exclude name="CamelCasePropertyName"/>
+    </rule>
+
+    <rule ref="rulesets/controversial.xml/CamelCasePropertyName">
+        <priority>1</priority>
+        <properties>
+            <property name="allow-underscore" value="true"/>
+        </properties>
+    </rule>
+
+    <!-- 规则： 设计规则-->
+    <!-- ExitExpression 不允许exit表达式-->
+    <!-- EvalExpression 不允许eval表达式-->
+    <!-- GotoStatement 不允许goto语句-->
+    <!-- NumberOfChildren 子类数量，默认15-->
+    <!-- DepthOfInheritance 继承层级，默认6-->
+    <!-- CouplingBetweenObjects 类依赖，默认13-->
+    <!-- DevelopmentCodeFragment 开发代码片段-->
+
+    <rule ref="rulesets/design.xml">
+        <exclude name="NumberOfChildren"/>
+        <exclude name="DepthOfInheritance"/>
+        <exclude name="CouplingBetweenObjects"/>
+    </rule>
+
+    <rule ref="rulesets/design.xml/NumberOfChildren">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="30"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/design.xml/DepthOfInheritance">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="12"/>
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/design.xml/DepthOfInheritance">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="20"/>
+        </properties>
+    </rule>
+
+    <!-- 规则：命名规则-->
+    <!-- ShortVariable 变量名称最小长度，默认为3-->
+    <!-- LongVariable 变量名称最大长度，默认为20-->
+    <!-- ShortMethodName 方法名称最小长度，默认为3-->
+    <!-- ConstantNamingConventions 常量命名约定，字母全部大写-->
+    <!-- BooleanGetMethodName 返回布尔值的方法不能是getX()，建议为isX()或者hasX()-->
+    <!-- ConstructorWithNameAsEnclosingClass 不允许使用与类同名的方法名作为构造函数（PHP4风格）-->
+    <rule ref="rulesets/naming.xml">
+    </rule>
+
+    <!-- 规则：代码尺寸规则-->
+    <!-- CyclomaticComplexity 圈复杂度，默认11-->
+    <!-- NPathComplexity 路径复杂度，默认200-->
+    <!-- ExcessiveMethodLength 过长的方法，默认不超过100行-->
+    <!-- ExcessiveClassLength 过长的类，默认不超过1000行-->
+    <!-- ExcessiveParameterList 过多的参数，默认不超过10个-->
+    <!-- ExcessivePublicCount 过多的公开方法、属性，默认不超过45个-->
+    <!-- TooManyFields 过多的属性，默认不超过15个-->
+    <!-- TooManyMethods 过多的方法，默认不超过25个-->
+    <!-- TooManyPublicMethods 过多的公开方法，默认不超过10个-->
+    <!-- ExcessiveClassComplexity 过高的类复杂度，默认不超过50 -->
+    <rule ref="rulesets/codesize.xml"></rule>
+
+    <!-- 规则：代码整洁规则-->
+    <!-- BooleanArgumentFlag 布尔参数标志-->
+    <!-- ElseExpression else表达式省略-->
+    <!-- StaticAccess 不允许静态访问-->
+    <rule ref="rulesets/cleancode.xml"></rule>
+
+</ruleset>
